@@ -49,7 +49,7 @@ def accuracy(actual, prediction):
 
 # exact accuracy goes through each integer in each array in the actual and prediction arrays.
 # good for multilabel classification problems (this is the same as the Exact Match metric)
-def deepAccuracy(actual, prediction):
+def deep_accuracy(actual, prediction):
     correct = 0.
     total = 0
     for (index, val) in enumerate(actual):
