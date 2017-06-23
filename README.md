@@ -1,5 +1,5 @@
 # simple-metrics
-A light Python script that can compute accuracy, deep accuracy, precision, recall, and f1 score.
+A light Python script that can compute accuracy, exact match, precision, recall, f1 score, and Hamming score.
 
 ## How to use
 Be sure to `import simple-metrics` at the top of your personal file and `simple-metrics.py` is in the same directory. <br><br>
