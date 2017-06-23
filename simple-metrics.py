@@ -1,6 +1,8 @@
 # A small file with various performance metrics written in Python
 # Copyright Varun Shenoy, 6/23/17
 
+import numpy as np
+
 # precision is the specificity
 # "Specificity relates to the test's ability to correctly detect patients without a condition."
 def precision(actual, prediction):
@@ -46,7 +48,7 @@ def accuracy(actual, prediction):
     return correct/len(actual)
 
 # exact accuracy goes through each integer in each array in the actual and prediction arrays.
-# good for multilabel classification problems
+# good for multilabel classification problems (this is the same as the Exact Match metric)
 def deepAccuracy(actual, prediction):
     correct = 0.
     total = 0
@@ -56,3 +58,22 @@ def deepAccuracy(actual, prediction):
                 correct += 1
             total += 1
     return correct/total
+
+# The Hamming score, also called accuracy in the multi-label setting, 
+# is defined as the number of correct labels divided by the union of predicted and true labels.
+def hamming_score(actual, prediction, normalize=True, sample_weight=None):
+    acc_list = []
+    for i in range(actual.shape[0]):
+        set_true = set( np.where(actual[i])[0] )
+        set_pred = set( np.where(prediction[i])[0] )
+        #print('\nset_true: {0}'.format(set_true))
+        #print('set_pred: {0}'.format(set_pred))
+        tmp_a = None
+        if len(set_true) == 0 and len(set_pred) == 0:
+            tmp_a = 1
+        else:
+            tmp_a = len(set_true.intersection(set_pred))/\
+                    float( len(set_true.union(set_pred)) )
+        #print('tmp_a: {0}'.format(tmp_a))
+        acc_list.append(tmp_a)
+    return np.mean(acc_list)
