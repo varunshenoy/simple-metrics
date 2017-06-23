@@ -56,14 +56,3 @@ def deepAccuracy(actual, prediction):
                 correct += 1
             total += 1
     return correct/total
-
-def main():
-    actual = [[1, 1, 1], [1, 0, 1], [0, 1, 0], [0, 0, 0]]
-    prediction = [[0, 0, 0], [1, 0, 0], [0, 1, 1], [0, 0, 0]]
-    print(deepAccuracy(actual, prediction))
-    print(precision(actual, prediction))
-    print(recall(actual, prediction))
-    print(f1score(actual, prediction))
-
-if __name__ == "__main__":
-    main()
